@@ -1,0 +1,63 @@
+﻿@using PetShopWeb.Models
+@model Animal
+
+@{
+    PetShopWeb.Models.Comment comm = new PetShopWeb.Models.Comment();
+}
+
+<h3 class="text-center">@Model.Name</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-8 border border-primary">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th scope="row" class="col-2">Age</th>
+                        <td class="col-10">@Model.Age</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-2">Description</th>
+                        <td class="col-10">@Model.Description</td>
+                    </tr>
+                    <tr>
+                        <th scope="row" class="col-2">Category</th>
+                        <td class="col-10">@Model.Category!.Name</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-4 border border-primary">
+            <table class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>Comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var comment in Model.Comments!)
+                    {
+                        <tr>
+                            <td>@comment.CommentText</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <form method="post">
+                <div class="form-group">
+                    @*<label asp-for="" class="control-label"></label>
+                    <input asp-for="Comments" class="form-control" />
+                    <span asp-validation-for="" class="text-danger"></span>*@
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+                }

@@ -1,0 +1,38 @@
+﻿@model IEnumerable<PetShopWeb.Models.Animal>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Home Page</title>
+</head>
+<body>
+    <h4 class="h4 text-center">The two most highly rated pets today are: </h4>
+    <br />
+    <div class="container">
+        <div class="row justify-content-md-center">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Description</th>
+                        <th scope="col">Number of comments</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var animal in Model)
+                    {
+                        <tr>
+                            <th scope="row">picture</th>
+                            <td>@animal.Name</td>
+                            <td>@animal.Description</td>
+                            <td>@animal.Comments.Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

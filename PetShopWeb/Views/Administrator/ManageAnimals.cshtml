@@ -1,0 +1,50 @@
+﻿@model IEnumerable<PetShopWeb.Models.Animal>
+
+<div class="container">
+    <div class="row justify-content-md-center">
+
+        <div class="input-group mb-3">
+            <select class="custom-select" id="inputGroupSelect02">
+                <option selected>Choose a catagory</option>
+                <option value="All">All</option>
+                @foreach (var category in ViewBag.Categories)
+                {
+                    <option value="@category">@category.Name</option>
+                    @*Yarinnnnn dont forget to fix the select choose category==========================================*@
+                }
+            </select>
+            @*<div class="input-group-append">
+            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+            </div>*@
+        </div>
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Potrait</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Description</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var animal in Model)
+                {
+                    <tr>
+                        <td>Picture</td>
+                        <td>@animal.Name</td>
+                        <td>@animal.Age</td>
+                        <td>@animal.Description</td>
+                        <td>
+                            <div class="btn-toolbar" style="padding-bottom: 5px">
+                                <a class="btn btn-primary btn-sm mb-1">Edit</a>
+                                <a class="btn btn-primary btn-sm mt-1">Delete</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

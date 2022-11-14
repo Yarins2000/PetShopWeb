@@ -1,10 +1,6 @@
 ﻿@using PetShopWeb.Models
 @model Animal
 
-@{
-    PetShopWeb.Models.Comment comm = new PetShopWeb.Models.Comment();
-}
-
 <h3 class="text-center">@Model.Name</h3>
 
 <div class="container">
@@ -46,11 +42,10 @@
             </table>
         </div>
         <div>
-            <form method="post">
+            <form method="post" asp-action="AddNewComment" asp-route-animalId = "@Model.Id">
                 <div class="form-group">
-                    @*<label asp-for="" class="control-label"></label>
-                    <input asp-for="Comments" class="form-control" />
-                    <span asp-validation-for="" class="text-danger"></span>*@
+                    <input class="form-text" name="commentText"/>
+                    @*<span asp-validation-for="@ViewBag.ErrorForComment"></span>*@
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>

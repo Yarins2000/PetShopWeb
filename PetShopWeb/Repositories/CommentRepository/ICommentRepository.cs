@@ -4,7 +4,7 @@ namespace PetShopWeb.Repositories.CommentRepository
 {
     public interface ICommentRepository
     {
-        void AddComment(Comment comment);
+        void AddComment(int animalId, string commentText);
 
     }
 }

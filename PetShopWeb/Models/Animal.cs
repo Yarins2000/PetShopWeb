@@ -14,8 +14,8 @@ namespace PetShopWeb.Models
         [RegularExpression(@"^[a-zA-Z]+$")]
         public string? Name { get; set; }
 
-        [Range(0, 200)]
         [Required(ErrorMessage = "Please specify an age")]
+        [Range(0, 500)]
         public int Age { get; set; }
 
         [Required(ErrorMessage = "Please specify an URL")]

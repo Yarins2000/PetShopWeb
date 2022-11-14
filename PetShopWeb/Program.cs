@@ -28,7 +28,7 @@ app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute("default", "{controller=Home}/{action=HomePage}/{animalId?}");
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=HomePage}/{categoryId?}");
     //endpoints.MapDefaultControllerRoute();
 });
 

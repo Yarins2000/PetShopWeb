@@ -12,8 +12,13 @@ namespace PetShopWeb.Repositories.CommentRepository
             this.context = context;
         }
 
-        public void AddComment(Comment comment)
+        public void AddComment(int animalId, string commentText)
         {
+            Comment comment = new()
+            {
+               AnimalId = animalId,
+               CommentText = commentText
+            };
             context.Comments!.Add(comment);
             context.SaveChanges();
         }

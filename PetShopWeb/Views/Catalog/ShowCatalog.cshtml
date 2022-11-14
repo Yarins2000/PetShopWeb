@@ -1,23 +1,20 @@
 ﻿@model IEnumerable<PetShopWeb.Models.Animal>
+<script src="~/scripts/categorySelect.js"></script>
 
 <div class="container">
     <div class="row justify-content-md-center">
 
         <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02">
-                <option selected>Choose a catagory</option>
-                <option value="All">All</option>
+            <select class="form-select-sm" id="catSelect">
+                <option>Choose a catagory</option>
+                <option value="0">All</option>
                 @foreach (var category in ViewBag.Categories)
                 {
-                    <option value="@category">@category.Name</option>
-                    @*Yarinnnnn dont forget to fix the select choose category==========================================*@
+                    <option name="categoryId" value="@category.Id">@category.Name</option>
                 }
             </select>
-            @*<div class="input-group-append">
-            <label class="input-group-text" for="inputGroupSelect02">Options</label>
-            </div>*@
-        </div>
 
+        </div>
 
         <table class="table table-bordered">
             <thead>
@@ -33,8 +30,10 @@
                     <tr>
                         <td>Picture</td>
                         <td>@animal.Name</td>
-                        <td><a class="btn btn-outline-info" 
-                            asp-controller="AnimalDetails" asp-action="AnimalDetails" asp-route-animalId="@animal.Id">More Information</a></td>
+                        <td>
+                            <a class="btn btn-outline-info"
+                           asp-controller="AnimalDetails" asp-action="AnimalDetails" asp-route-animalId="@animal.Id">More Information</a>
+                        </td>
                     </tr>
                 }
             </tbody>

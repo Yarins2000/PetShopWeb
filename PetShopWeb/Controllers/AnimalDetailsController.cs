@@ -17,18 +17,18 @@ namespace PetShopWeb.Controllers
 
         public IActionResult AnimalDetails(int animalId)
         {
-            ViewBag.newComment = new Comment();
             return View(_animalRepository.GetAnimalById(animalId));
         }
 
-        //[HttpPost]
-        public IActionResult AddNewComment(Comment comment)
+        [HttpPost]
+        public IActionResult AddNewComment(int animalId, string commentText)
         {
+            ViewBag.ErrorForComment = new Comment().CommentText;
             if(ModelState.IsValid)
             {
-                _commentRepository.AddComment(comment);
+                _commentRepository.AddComment(animalId, commentText);
             }
-            return RedirectToAction("AnimalDetails", comment.AnimalId);
+            return RedirectToAction("AnimalDetails", routeValues: new {animalId});
         }
     }
 }

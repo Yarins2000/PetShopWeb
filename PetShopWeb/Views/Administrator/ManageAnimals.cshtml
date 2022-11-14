@@ -1,21 +1,19 @@
 ﻿@model IEnumerable<PetShopWeb.Models.Animal>
 
+<script src="~/scripts/adminCategorySelect.js"></script>
+
 <div class="container">
     <div class="row justify-content-md-center">
 
         <div class="input-group mb-3">
-            <select class="custom-select" id="inputGroupSelect02">
-                <option selected>Choose a catagory</option>
-                <option value="All">All</option>
+            <select class="form-select-sm" id="catSelect">
+                <option>Choose a catagory</option>
+                <option value="0">All</option>
                 @foreach (var category in ViewBag.Categories)
                 {
-                    <option value="@category">@category.Name</option>
-                    @*Yarinnnnn dont forget to fix the select choose category==========================================*@
+                    <option name="categoryId" value="@category.Id">@category.Name</option>
                 }
             </select>
-            @*<div class="input-group-append">
-            <label class="input-group-text" for="inputGroupSelect02">Options</label>
-            </div>*@
         </div>
 
         <table class="table table-bordered">
@@ -39,7 +37,8 @@
                         <td>
                             <div class="btn-toolbar" style="padding-bottom: 5px">
                                 <a class="btn btn-primary btn-sm mb-1">Edit</a>
-                                <a class="btn btn-primary btn-sm mt-1">Delete</a>
+                                <a class="btn btn-danger btn-sm mt-1" asp-action="Delete" asp-route-id="@animal.Id"
+                                onclick="return confirm('Are you sure you want to delete?');">Delete</a>
                             </div>
                         </td>
                     </tr>

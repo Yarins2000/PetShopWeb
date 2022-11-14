@@ -1,6 +1,6 @@
 ﻿$(function () {
     $("#catSelect").change(function () {
         let selected = $('#catSelect').val();
-        window.location.href = "/Catalog/ShowCatalog/" + selected
+        window.location.href = "/Administrator/ManageAnimals/" + selected
     });
 });

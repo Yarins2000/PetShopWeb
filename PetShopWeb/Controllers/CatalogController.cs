@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PetShopWeb.Models;
 using PetShopWeb.Repositories.AnimalRepository;
 using PetShopWeb.Repositories.CategoryRepository;
 
@@ -14,11 +15,14 @@ namespace PetShopWeb.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public IActionResult ShowCatalog()
+        public IActionResult ShowCatalog(int categoryId)
         {
-            //ViewBag.Categories = _categoryRepository.GetCategories();
-            //return View(_animalRepository.GetAnimals());
-            return View(_categoryRepository.GetCategories());
+            ViewBag.Categories = _categoryRepository.GetCategories();
+
+            if (categoryId is 0)
+                return View(_animalRepository.GetAnimals());
+
+            return View(_categoryRepository.GetAnimalsByCategory(categoryId));
         }
     }
 }

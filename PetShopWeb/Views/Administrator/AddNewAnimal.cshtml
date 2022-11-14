@@ -3,8 +3,6 @@
 
 <div class="container">
     <div class="row justify-content-md-center">
-
-
         <form method="post">
             <div class="mb-3">
                 <label asp-for="Name"></label>
@@ -28,14 +26,20 @@
             </div>
             <div class="mb-3">
                 <label>Category</label>
-                <select class="form-control">
+                <select asp-for=CategoryId class="form-control">
+                    <option disabled selected>Choose a catagory</option>
                     @foreach (var category in ViewBag.Categories)
                     {
-                        <option value="@category">@category.Name</option>
+                        <option name="CategoryId" value="@category.Id">@category.Name</option>
                     }
                 </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
     </div>
 </div>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -38,7 +38,7 @@ namespace PetShopWeb.Repositories.AnimalRepository
             {
                 animal.Name = updatedAnimal.Name;
                 animal.Description = updatedAnimal.Description;
-                animal.PictureUrl = updatedAnimal.PictureUrl;
+                animal.ImagePath = "~/photos/" + updatedAnimal.ImagePath;
                 animal.Age = updatedAnimal.Age;
                 context.SaveChanges();
             }

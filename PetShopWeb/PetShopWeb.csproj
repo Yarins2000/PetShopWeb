@@ -55,7 +55,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\photos\" />
-    <Folder Include="wwwroot\styles\" />
   </ItemGroup>
 
   <ItemGroup>

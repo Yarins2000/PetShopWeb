@@ -24,7 +24,7 @@
                     @foreach (var animal in Model)
                     {
                         <tr>
-                            <th scope="row">picture</th>
+                            <td class="w-25"><img asp-append-version="true" src="@animal.ImagePath" class="img-fluid img-thumbnail" /></td>
                             <td>@animal.Name</td>
                             <td>@animal.Description</td>
                             <td>@animal.Comments!.Count</td>

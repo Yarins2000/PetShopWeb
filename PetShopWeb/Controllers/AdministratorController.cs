@@ -28,6 +28,7 @@ namespace PetShopWeb.Controllers
         public IActionResult AddNewAnimal()
         {
             ViewBag.Categories = _categoryRepository.GetCategories();
+            ViewBag.AddOrEdit = "Add";
             return View();
         }
 
@@ -35,8 +36,10 @@ namespace PetShopWeb.Controllers
         public IActionResult AddNewAnimal(Animal newAnimal)
         {
             ViewBag.Categories = _categoryRepository.GetCategories();
+            ViewBag.AddOrEdit = "Add";
             if (ModelState.IsValid)
             {
+                newAnimal.ImagePath = "~/photos/" + newAnimal.ImagePath;
                 _animalRepository.AddNewAnimal(newAnimal);
                 return RedirectToAction("ShowCatalog", controllerName: "Catalog");
             }
@@ -45,33 +48,24 @@ namespace PetShopWeb.Controllers
 
         public IActionResult Edit(int id)
         {
-            //if (id is null || id is 0)
-            //    return NotFound();
-            //var category = _db.Categories.Find(id);
-            //if (category is null)
-            //    return NotFound();
-            //return View(category);
-            return View();
+            var animal = _animalRepository.GetAnimalById(id);
+            if (animal is null)
+                return NotFound();
+            ViewBag.Categories = _categoryRepository.GetCategories();
+            ViewBag.AddOrEdit = "Edit";
+            return View(animal);
         }
 
-        //POST
         [HttpPost]
         public IActionResult Edit(Animal animal)
         {
-            //if (category.Name == category.DisplayOrder.ToString())
-            //{
-            //    ModelState.AddModelError("name", "The DisplayOrder cannot match the Name.");
-            //}
-
-            //if (ModelState.IsValid)
-            //{
-            //    _db.Categories.Update(category);
-            //    _db.SaveChanges();
-            //    TempData["success"] = "Category has been updated successfully";
-            //    return RedirectToAction("Index");
-            //}
-            //return View(category);
-            return Content("df");
+            ViewBag.AddOrEdit = "Edit";
+            if (ModelState.IsValid)
+            {
+                _animalRepository.UpdateAnimal(animal.Id, animal);
+                return RedirectToAction("ManageAnimals");
+            }
+            return View(animal.Id);
         }
 
         public IActionResult Delete(int id)

@@ -5,21 +5,12 @@
 <div class="container">
     <div class="row justify-content-md-center">
 
-        <div class="input-group mb-3">
-            <select class="form-select-sm" id="catSelect">
-                <option>Choose a catagory</option>
-                <option value="0">All</option>
-                @foreach (var category in ViewBag.Categories)
-                {
-                    <option name="categoryId" value="@category.Id">@category.Name</option>
-                }
-            </select>
-        </div>
+        <partial name="_CategorySelectPartial" />
 
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Potrait</th>
+                    <th scope="col">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Description</th>
@@ -30,13 +21,13 @@
                 @foreach (var animal in Model)
                 {
                     <tr>
-                        <td>Picture</td>
+                        <td class="w-25"><img asp-append-version="true" src="@animal.ImagePath" class="img-fluid img-thumbnail" /></td>
                         <td>@animal.Name</td>
                         <td>@animal.Age</td>
                         <td>@animal.Description</td>
                         <td>
                             <div class="btn-toolbar" style="padding-bottom: 5px">
-                                <a class="btn btn-primary btn-sm mb-1">Edit</a>
+                                <a class="btn btn-warning btn-sm mb-1" asp-action="Edit" asp-route-id="@animal.Id">Edit</a>
                                 <a class="btn btn-danger btn-sm mt-1" asp-action="Delete" asp-route-id="@animal.Id"
                                 onclick="return confirm('Are you sure you want to delete?');">Delete</a>
                             </div>

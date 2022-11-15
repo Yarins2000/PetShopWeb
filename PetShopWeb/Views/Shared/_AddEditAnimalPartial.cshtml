@@ -1,5 +1,7 @@
-﻿@*@using PetShopWeb.Models
+﻿@using PetShopWeb.Models
 @model Animal
+
+<script src="~/scripts/imageExtensionValidator.js"></script>
 
 <div class="container">
     <div class="row justify-content-md-center">
@@ -15,9 +17,9 @@
                 <span asp-validation-for="Age" class="text-danger"></span>
             </div>
             <div class="mb-3">
-                <label asp-for="PhotoPath"></label>
-                <input asp-for="PhotoPath" type="file" class="form-control" />
-                <span asp-validation-for="PhotoPath" class="text-danger"></span>
+                <label asp-for="ImagePath"></label>
+                <input asp-for="ImagePath" type="file" class="form-control" data="val-onlyimage" />
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Description"></label>
@@ -35,12 +37,10 @@
                 </select>
                 <span asp-validation-for="CategoryId" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">@ViewBag.AddOrEdit</button>
         </form>
     </div>
-</div>*@
-
-<partial name="_AddEditAnimalPartial" />
+</div>
 
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />

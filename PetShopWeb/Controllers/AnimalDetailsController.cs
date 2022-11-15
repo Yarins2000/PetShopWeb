@@ -23,12 +23,16 @@ namespace PetShopWeb.Controllers
         [HttpPost]
         public IActionResult AddNewComment(int animalId, string commentText)
         {
-            ViewBag.ErrorForComment = new Comment().CommentText;
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
+                if (_commentRepository.IsCommentExist(commentText))
+                {
+                    ModelState.AddModelError("commentText", "This comment is already exist");
+                    return View("AnimalDetails", model: _animalRepository.GetAnimalById(animalId));
+                }
                 _commentRepository.AddComment(animalId, commentText);
             }
-            return RedirectToAction("AnimalDetails", routeValues: new {animalId});
+            return RedirectToAction("AnimalDetails", routeValues: new { animalId });
         }
     }
 }

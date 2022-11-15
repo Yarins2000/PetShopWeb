@@ -1,0 +1,10 @@
+﻿<div class="input-group mb-3">
+    <select class="form-select-sm" id="catSelect">
+        <option>Choose a catagory</option>
+        <option value="0">All</option>
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option name="categoryId" value="@category.Id">@category.Name</option>
+        }
+    </select>
+</div>

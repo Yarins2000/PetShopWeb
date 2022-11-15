@@ -6,7 +6,6 @@ namespace PetShopWeb.Models
     public class Category
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Please specify a name")]

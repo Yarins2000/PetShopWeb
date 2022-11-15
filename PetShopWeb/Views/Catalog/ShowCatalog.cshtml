@@ -4,17 +4,7 @@
 <div class="container">
     <div class="row justify-content-md-center">
 
-        <div class="input-group mb-3">
-            <select class="form-select-sm" id="catSelect">
-                <option>Choose a catagory</option>
-                <option value="0">All</option>
-                @foreach (var category in ViewBag.Categories)
-                {
-                    <option name="categoryId" value="@category.Id">@category.Name</option>
-                }
-            </select>
-
-        </div>
+        <partial name="_CategorySelectPartial" />
 
         <table class="table table-bordered">
             <thead>
@@ -28,7 +18,7 @@
                 @foreach (var animal in Model)
                 {
                     <tr>
-                        <td>Picture</td>
+                        <td class="w-25"><img asp-append-version="true" src="@animal.ImagePath" class="img-fluid img-thumbnail"/></td>
                         <td>@animal.Name</td>
                         <td>
                             <a class="btn btn-outline-info"

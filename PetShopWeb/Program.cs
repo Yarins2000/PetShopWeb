@@ -16,19 +16,18 @@ builder.Services.AddDbContext<PetShopContext>(options => options.UseLazyLoadingP
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var ctx = scope.ServiceProvider.GetRequiredService<PetShopContext>();
-    ctx.Database.EnsureDeleted();
-    ctx.Database.EnsureCreated();
-}
+//using (var scope = app.Services.CreateScope())
+//{
+//    var ctx = scope.ServiceProvider.GetRequiredService<PetShopContext>();
+//    ctx.Database.EnsureDeleted();
+//    ctx.Database.EnsureCreated();
+//}
 
 app.UseStaticFiles();
 app.UseRouting();
 
 app.UseEndpoints(endpoints =>
 {
-    endpoints.MapControllerRoute("default", "{controller=Home}/{action=HomePage}/{categoryId?}");
-    //endpoints.MapDefaultControllerRoute();
+    endpoints.MapControllerRoute("default", "{controller=Home}/{action=HomePage}/{id?}");
 });
 app.Run();

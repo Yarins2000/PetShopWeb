@@ -17,12 +17,12 @@ namespace PetShopWeb.Controllers
             _animalRepository = animalRepository;
         }
 
-        public IActionResult ManageAnimals(int categoryId)
+        public IActionResult ManageAnimals(int id)
         {
             ViewBag.Categories = _categoryRepository.GetCategories();
-            if (categoryId is 0)
+            if (id is 0)
                 return View(_animalRepository.GetAnimals());
-            return View(_categoryRepository.GetAnimalsByCategory(categoryId));
+            return View(_categoryRepository.GetAnimalsByCategory(id));
         }
 
         public IActionResult AddNewAnimal()

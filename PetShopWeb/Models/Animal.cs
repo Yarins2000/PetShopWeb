@@ -24,7 +24,7 @@ namespace PetShopWeb.Models
 
         [Required(ErrorMessage = "Please specify a description")]
         [DataType(DataType.MultilineText)]
-        //[MaxLength(500)]
+        [StringLength(5000)]
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Must choose a category")]

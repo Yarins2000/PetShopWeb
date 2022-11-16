@@ -21,10 +21,8 @@ namespace PetShopWeb.Attributes
             }
 
             MergeAttribute(context.Attributes, "data-val-onlyimage", "true");
-            //var errorMessage = FormatErrorMessage(context.ModelMetadata.GetDisplayName());
-            //MergeAttribute(context.Attributes, "data-val-onlyimage", errorMessage);
         }
-        private bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
+        private static bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
         {
             if (attributes.ContainsKey(key))
             {

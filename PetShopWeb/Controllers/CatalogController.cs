@@ -15,14 +15,14 @@ namespace PetShopWeb.Controllers
             _categoryRepository = categoryRepository;
         }
 
-        public IActionResult ShowCatalog(int categoryId)
+        public IActionResult ShowCatalog(int id)
         {
             ViewBag.Categories = _categoryRepository.GetCategories();
 
-            if (categoryId is 0)
+            if (id is 0)
                 return View(_animalRepository.GetAnimals());
 
-            return View(_categoryRepository.GetAnimalsByCategory(categoryId));
+            return View(_categoryRepository.GetAnimalsByCategory(id));
         }
     }
 }

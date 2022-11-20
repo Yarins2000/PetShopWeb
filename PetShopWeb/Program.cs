@@ -7,9 +7,9 @@ using PetShopWeb.Repositories.CommentRepository;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IAnimalRepository, AnimalRepository>();
-builder.Services.AddTransient<ICommentRepository, CommentRepository>();
-builder.Services.AddTransient<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<IAnimalRepository, AnimalRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
 
 string connectionString = builder.Configuration["ConnectionStrings:DefaultConnection"];
 builder.Services.AddDbContext<PetShopContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
@@ -22,6 +22,9 @@ var app = builder.Build();
 //    ctx.Database.EnsureDeleted();
 //    ctx.Database.EnsureCreated();
 //}
+
+if (!app.Environment.IsDevelopment())
+    app.UseExceptionHandler("/Error/ErrorPage");
 
 app.UseStaticFiles();
 app.UseRouting();

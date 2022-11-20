@@ -7,8 +7,8 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-8 border border-primary">
-            <table class="table">
+        <div class="col-8">
+            <table class="table border border-dark">
                 <tbody>
                     <tr>
                         <th scope="row" class="col-2">Age</th>
@@ -26,7 +26,7 @@
             </table>
         </div>
 
-        <div class="col-4 border border-primary table-wrapper-scroll-y my-custom-scrollbar">
+        <div class="col-4 border border-dark table-wrapper-scroll-y my-custom-scrollbar">
             <table class="table table-bordered table-striped mb-0">
                 <thead>
                     <tr>
@@ -46,24 +46,29 @@
         <div>
         </div>
     </div>
-    <form method="post" asp-action="AddNewComment" asp-route-animalId="@Model.Id">
-        <div class="row justify-content-end">
-            <div class="col-4">
-                <div class="input-group">
+    <div class="row">
+        <div class="col-md-1">
+            <img src="@Model.ImagePath" asp-append-version="true" width="350" height="300" />
+        </div>
+        <div class="col-md offset-md-7">
+            <form method="post" asp-action="AddNewComment" asp-route-animalId="@Model.Id">
+
+                <div class="input-group mt-2">
                     <div class="input-group-prepend">
-                        <span class="input-group-text">Write comment</span>
+                        <span class="input-group-text">Write a comment</span>
                     </div>
                     <textarea name="commentText" class="form-control" aria-label="new comment"></textarea>
                 </div>
-            </div>
-            <span asp-validation-for="Comments!.First().CommentText" class="text-danger"></span>
+
+                <div class="row justify-content-end">
+                <span asp-validation-for="Comments!.First().CommentText" class="text-danger col-md offset-4"></span>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="row justify-content-end">
-            <div class="col-1">
-                <button type="submit" class="btn btn-primary mt-2">Submit</button>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>
 
 @section Scripts{

@@ -6,7 +6,7 @@
 
         <partial name="_CategorySelectPartial" />
 
-        <table class="table table-bordered">
+        <table class="table table-bordered text-center">
             <thead>
                 <tr>
                     <th scope="col">Potrait</th>
@@ -19,7 +19,7 @@
                 {
                     <tr>
                         <td class="w-25"><img asp-append-version="true" src="@animal.ImagePath" class="img-fluid img-thumbnail"/></td>
-                        <td>@animal.Name</td>
+                        <td class="text-center fs-3">@animal.Name</td>
                         <td>
                             <a class="btn btn-outline-info"
                            asp-controller="AnimalDetails" asp-action="AnimalDetails" asp-route-animalId="@animal.Id">More Information</a>

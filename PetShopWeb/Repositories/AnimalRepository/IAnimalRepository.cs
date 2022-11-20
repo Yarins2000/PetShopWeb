@@ -6,7 +6,7 @@ namespace PetShopWeb.Repositories.AnimalRepository
     {
         IEnumerable<Animal> GetAnimals();
         Animal? GetAnimalById(int id);
-        IEnumerable<Animal> GetMostReviewedAnimals();
+        IEnumerable<Animal> GetMostReviewedAnimals(int animalsCount);
         void AddNewAnimal(Animal newAnimal);
         void UpdateAnimal(int id, Animal updatedAnimal);
         void DeleteAnimal(int id);

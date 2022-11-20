@@ -14,7 +14,7 @@ namespace PetShopWeb.Controllers
 
         public IActionResult HomePage()
         {
-            return View(animalRepository.GetMostReviewedAnimals());
+            return View(animalRepository.GetMostReviewedAnimals(2));
         }
     }
 }

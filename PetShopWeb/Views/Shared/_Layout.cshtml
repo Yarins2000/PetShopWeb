@@ -9,12 +9,12 @@
     <script src="~/lib/jquery/jquery.min.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js" defer></script>
 </head>
-<body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<body style="background-color:antiquewhite; ">
+    <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: floralwhite;">
         <a class="navbar-brand">
-            <img src="~/photos/petShopIcon.png" width="150" height="150" class="d-inline-block align-top"/>
+            <img src="~/photos/petShopIcon.png" width="150" height="150" class="d-inline-block align-top" />
         </a>
-        <div class="collapse navbar-collapse justify-content-center">
+        <div class="collapse navbar-collapse justify-content-center fs-5">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="nav-link" asp-action="HomePage" asp-controller="Home">Home</a>
@@ -36,7 +36,9 @@
         </div>
     </nav>
 
-    <h1 class="h1">Yarin's Pet Shop</h1>
+    @*<div class="text-center">
+        <span class="h1">Yarin's Pet Shop</span>
+    </div>*@
 
     <div>
         @RenderBody()

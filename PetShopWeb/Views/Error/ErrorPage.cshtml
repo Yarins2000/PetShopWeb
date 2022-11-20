@@ -1,0 +1,20 @@
+﻿
+@{
+    ViewData["Title"] = "ErrorPage";
+}
+
+<div class="text-center d-flex mx-auto flex-column">
+    <main role="main">
+        <h1 class="cover">Oops...</h1>
+        <p class="lead">
+            It seems like we're having a problem.
+            For now you can get back to the home page or to the previous page.
+        </p>
+        <p class="lead">
+            <a asp-controller="Home" asp-action="HomePage" class="btn btn-lg btn-secondary">Home</a>
+        </p>
+        <p class="lead">
+            <a class="btn btn-lg btn-secondary" onclick="window.history.back();">Back</a>
+        </p>
+    </main>
+</div>

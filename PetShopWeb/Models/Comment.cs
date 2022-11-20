@@ -8,8 +8,8 @@ namespace PetShopWeb.Models
         [Key]
         public int Id { get; set; }
 
-        [Required(ErrorMessage = "Please specify a comment")]
         [DataType(DataType.MultilineText), MaxLength(300)]
+        [Required(ErrorMessage = "Please specify a comment")]
         public string? CommentText { get; set; }
 
         public int AnimalId { get; set; }

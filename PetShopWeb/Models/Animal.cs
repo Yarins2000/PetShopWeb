@@ -18,8 +18,8 @@ namespace PetShopWeb.Models
         [Range(1, 500, ErrorMessage = "The age must be between 1-500")]
         public int Age { get; set; }
 
-        [Required(ErrorMessage = "Please specify a photo")]
         [ImageExtension(new string[] {"png", "jpg", "jpeg", "webp", "raw", "svg"}, ErrorMessage = "This file extension is not allowed")]
+        [Required(ErrorMessage = "Please specify a photo")]
         public string? ImagePath { get; set; }
 
         [Required(ErrorMessage = "Please specify a description")]

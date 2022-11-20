@@ -36,9 +36,9 @@ namespace PetShopWeb.Repositories.AnimalRepository
             var animal = context.Animals!.Find(id);
             if (animal is not null)
             {
+                animal.ImagePath = "~/photos/" + updatedAnimal.ImagePath;
                 animal.Name = updatedAnimal.Name;
                 animal.Description = updatedAnimal.Description;
-                animal.ImagePath = "~/photos/" + updatedAnimal.ImagePath;
                 animal.Age = updatedAnimal.Age;
                 context.SaveChanges();
             }
@@ -53,9 +53,9 @@ namespace PetShopWeb.Repositories.AnimalRepository
             }
         }
 
-        public IEnumerable<Animal> GetMostReviewedAnimals()
+        public IEnumerable<Animal> GetMostReviewedAnimals(int animalsCount)
         {
-            return context.Animals!.OrderByDescending(a => a.Comments!.Count).Take(2).ToList();
+            return context.Animals!.OrderByDescending(a => a.Comments!.Count).Take(animalsCount).ToList();
         }
     }
 }

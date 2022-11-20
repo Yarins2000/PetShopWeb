@@ -2,7 +2,9 @@
 using PetShopWeb.Models;
 using PetShopWeb.Repositories.AnimalRepository;
 using PetShopWeb.Repositories.CategoryRepository;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using PetShopWeb.Repositories.CommentRepository;
+using Microsoft.AspNetCore.Http;
 
 namespace PetShopWeb.Controllers
 {
@@ -45,12 +47,11 @@ namespace PetShopWeb.Controllers
             }
             return View();
         }
-
         public IActionResult Edit(int id)
         {
             var animal = _animalRepository.GetAnimalById(id);
             if (animal is null)
-                return NotFound();
+                return RedirectToAction("HomePage", controllerName: "Home");
             ViewBag.Categories = _categoryRepository.GetCategories();
             ViewBag.AddOrEdit = "Edit";
             return View(animal);
@@ -65,7 +66,7 @@ namespace PetShopWeb.Controllers
                 _animalRepository.UpdateAnimal(animal.Id, animal);
                 return RedirectToAction("ManageAnimals");
             }
-            return View(animal.Id);
+            return Edit(animal.Id);
         }
 
         public IActionResult Delete(int id)

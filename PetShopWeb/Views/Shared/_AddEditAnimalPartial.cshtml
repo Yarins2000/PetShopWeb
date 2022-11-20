@@ -1,47 +1,50 @@
 ﻿@using PetShopWeb.Models
 @model Animal
 
-<script src="~/scripts/imageExtensionValidator.js"></script>
 
 <div class="container">
-    <div class="row justify-content-md-center">
-        <form method="post">
+    <div class="row">
+        <div class="col-8">
+            <form method="post">
+                <div class="mb-3">
+                    <label asp-for="Name"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Age"></label>
+                    <input asp-for="Age" class="form-control" />
+                    <span asp-validation-for="Age" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="ImagePath"></label>
+                    <input asp-for="ImagePath" type="file" class="form-control" accept="image/*" id="imageFile"/>
+                    <span asp-validation-for="ImagePath" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description"></label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for=CategoryId class="form-select" id="inputGroupSelect01">
+                        <option disabled selected>Choose a catagory</option>
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            <option name="CategoryId" value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-primary">@ViewBag.AddOrEdit</button>
+            </form>
+        </div>
+        <div class="col-4">
             <div class="mb-3">
-                <label asp-for="Name"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <img class="img-fluid" src="@(Model is null ? "" : Model.ImagePath)" asp-append-version="true" id="chosenImg" />
             </div>
-            <div class="mb-3">
-                <label asp-for="Age"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="ImagePath"></label>
-                <input asp-for="ImagePath" type="file" class="form-control" data="val-onlyimage" />
-                <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Description"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="CategoryId"></label>
-                <select asp-for=CategoryId class="form-select" id="inputGroupSelect01">
-                    <option disabled selected>Choose a catagory</option>
-                    @foreach (var category in ViewBag.Categories)
-                    {
-                        <option name="CategoryId" value="@category.Id">@category.Name</option>
-                    }
-                </select>
-                <span asp-validation-for="CategoryId" class="text-danger"></span>
-            </div>
-            <button type="submit" class="btn btn-primary">@ViewBag.AddOrEdit</button>
-        </form>
+        </div>
     </div>
 </div>
-
-@section Scripts{
-    <partial name="_ValidationScriptsPartial" />
-}
+<script src="~/scripts/showChosenImage.js"></script>

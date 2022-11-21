@@ -1,5 +1,4 @@
-﻿@using PetShopWeb.Models
-@model Animal
+﻿@model Animal
 
 <link rel="stylesheet" href="~/styles/scrollTable.css" />
 
@@ -47,12 +46,13 @@
         </div>
     </div>
     <div class="row">
+
         <div class="col-md-1">
             <img src="@Model.ImagePath" asp-append-version="true" width="350" height="300" />
         </div>
+
         <div class="col-md offset-md-7">
             <form method="post" asp-action="AddNewComment" asp-route-animalId="@Model.Id">
-
                 <div class="input-group mt-2">
                     <div class="input-group-prepend">
                         <span class="input-group-text">Write a comment</span>

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PetShopWeb.Models;
 using PetShopWeb.Repositories.AnimalRepository;
 using PetShopWeb.Repositories.CommentRepository;
 

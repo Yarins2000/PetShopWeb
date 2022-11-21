@@ -1,37 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace PetShopWeb.Attributes
 {
+    /// <summary>
+    /// Validation attribute for file's extension.
+    /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
-    public class ImageExtensionAttribute : ValidationAttribute, IClientModelValidator
+    public class ImageExtensionAttribute : ValidationAttribute
     {
+        /// <summary>
+        /// The allowed extensions that recieved from the model.
+        /// </summary>
         private readonly string[] extensions;
 
         public ImageExtensionAttribute(string[] extensions)
         {
             this.extensions = extensions;
         }
-
-        public void AddValidation(ClientModelValidationContext context)
-        {
-            if (context == null)
-            {
-                throw new ArgumentNullException(nameof(context));
-            }
-
-            MergeAttribute(context.Attributes, "data-val-onlyimage", "true");
-        }
-        private static bool MergeAttribute(IDictionary<string, string> attributes, string key, string value)
-        {
-            if (attributes.ContainsKey(key))
-            {
-                return false;
-            }
-            attributes.Add(key, value);
-            return true;
-        }
-
         public override bool IsValid(object? value)
         {
             var path = value as string;

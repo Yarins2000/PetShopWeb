@@ -2,9 +2,6 @@
 using PetShopWeb.Models;
 using PetShopWeb.Repositories.AnimalRepository;
 using PetShopWeb.Repositories.CategoryRepository;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
-using PetShopWeb.Repositories.CommentRepository;
-using Microsoft.AspNetCore.Http;
 
 namespace PetShopWeb.Controllers
 {

@@ -1,6 +1,5 @@
 ﻿using PetShopWeb.Attributes;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace PetShopWeb.Models
 {
@@ -18,7 +17,7 @@ namespace PetShopWeb.Models
         [Range(1, 500, ErrorMessage = "The age must be between 1-500")]
         public int Age { get; set; }
 
-        [ImageExtension(new string[] {"png", "jpg", "jpeg", "webp", "raw", "svg"}, ErrorMessage = "This file extension is not allowed")]
+        [ImageExtension(new string[] { "png", "jpg", "jpeg", "webp", "raw", "svg" }, ErrorMessage = "This file extension is not allowed")]
         [Required(ErrorMessage = "Please specify a photo")]
         public string? ImagePath { get; set; }
 
@@ -28,7 +27,7 @@ namespace PetShopWeb.Models
         public string? Description { get; set; }
 
         [Required(ErrorMessage = "Must choose a category")]
-        [Display(Name ="Category")]
+        [Display(Name = "Category")]
         public int CategoryId { get; set; }
         public virtual Category? Category { get; set; }
 

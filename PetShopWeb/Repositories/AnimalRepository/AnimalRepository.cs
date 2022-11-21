@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using PetShopWeb.Data;
+﻿using PetShopWeb.Data;
 using PetShopWeb.Models;
 
 namespace PetShopWeb.Repositories.AnimalRepository

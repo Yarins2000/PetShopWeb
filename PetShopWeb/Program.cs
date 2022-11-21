@@ -16,12 +16,12 @@ builder.Services.AddDbContext<PetShopContext>(options => options.UseLazyLoadingP
 
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var ctx = scope.ServiceProvider.GetRequiredService<PetShopContext>();
-//    ctx.Database.EnsureDeleted();
-//    ctx.Database.EnsureCreated();
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var ctx = scope.ServiceProvider.GetRequiredService<PetShopContext>();
+    ctx.Database.EnsureDeleted();
+    ctx.Database.EnsureCreated();
+}
 
 if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error/ErrorPage");

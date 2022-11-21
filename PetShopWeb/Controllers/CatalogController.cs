@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PetShopWeb.Models;
 using PetShopWeb.Repositories.AnimalRepository;
 using PetShopWeb.Repositories.CategoryRepository;
 
@@ -21,7 +20,6 @@ namespace PetShopWeb.Controllers
 
             if (id is 0)
                 return View(_animalRepository.GetAnimals());
-
             return View(_categoryRepository.GetAnimalsByCategory(id));
         }
     }

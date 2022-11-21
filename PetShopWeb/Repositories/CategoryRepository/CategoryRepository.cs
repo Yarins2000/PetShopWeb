@@ -18,8 +18,10 @@ namespace PetShopWeb.Repositories.CategoryRepository
 
         public IEnumerable<Animal> GetAnimalsByCategory(int categoryId)
         {
-            //return GetCategories().SingleOrDefault(c => c.Id == categoryId)!.Animals!;
-            return context.Animals!.Where(a => a.CategoryId == categoryId).ToList();
+            var category = context.Categories!.Find(categoryId);
+            if (category is not null)
+                return category.Animals!;
+            return context.Animals!;
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace PetShopWeb.Attributes
 {
     /// <summary>
-    /// Validation attribute for file's extension.
+    /// Validation attribute for image's extensions.
     /// </summary>
     [AttributeUsage(AttributeTargets.Property)]
     public class ImageExtensionAttribute : ValidationAttribute

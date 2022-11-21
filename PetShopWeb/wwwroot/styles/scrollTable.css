@@ -1,4 +1,6 @@
-﻿.my-custom-scrollbar {
+﻿/*For scrolling the comments table*/
+
+.my-custom-scrollbar {
     position: relative;
     height: 200px;
     overflow: auto;

@@ -24,7 +24,7 @@ namespace PetShopWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (_commentRepository.IsCommentExist(commentText))
+                if (_commentRepository.IsCommentExist(animalId, commentText))
                 {
                     ModelState.AddModelError("commentText", "This comment is already exist");
                     return View("AnimalDetails", model: _animalRepository.GetAnimalById(animalId));

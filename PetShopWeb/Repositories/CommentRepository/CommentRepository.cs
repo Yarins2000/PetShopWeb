@@ -22,9 +22,12 @@ namespace PetShopWeb.Repositories.CommentRepository
             context.Comments!.Add(comment);
             context.SaveChanges();
         }
-        public bool IsCommentExist(string commentText)
+        public bool IsCommentExist(int animalId, string commentText)
         {
-            return context.Comments!.Any(c => c.CommentText == commentText);
+            var animal = context.Animals!.Find(animalId);
+            if (animal is not null)
+                return animal.Comments!.Any(c => c.CommentText == commentText);
+            return false;
         }
     }
 }

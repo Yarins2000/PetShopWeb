@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  db:
+    image: yarins2000/petshopdb:1.0
+    restart: always
+  app:
+    depends_on:
+      - db
+    image: yarins2000/petshopcode
+    restart: always

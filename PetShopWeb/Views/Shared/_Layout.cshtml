@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@inject SignInManager<IdentityUser> signInManager;
+
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -12,28 +14,63 @@
 </head>
 <body style="background-color:antiquewhite; ">
     <nav class="navbar navbar-expand-lg navbar-light mb-4" style="background-color: floralwhite;">
-        <a class="navbar-brand">
-            <img src="~/photos/petShopIcon.png" width="150" height="150" class="d-inline-block align-top" />
-        </a>
-        <div class="collapse navbar-collapse justify-content-center fs-5">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" asp-action="HomePage" asp-controller="Home">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" asp-action="ShowCatalog" asp-controller="Catalog">Catalog</a>
-                </li>
+        <div class="container-fluid">
+            <a class="navbar-brand">
+                <img src="~/photos/petShopIcon.png" width="150" height="150" class="d-inline-block align-top" />
+            </a>
+            <div class="collapse navbar-collapse justify-content-center fs-5">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" asp-action="HomePage" asp-controller="Home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-action="ShowCatalog" asp-controller="Catalog">Catalog</a>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Administrator
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" asp-controller="Administrator" asp-action="ManageAnimals">Manage Animals</a>
-                        <a class="dropdown-item" asp-controller="Administrator" asp-action="AddNewAnimal">Add Animal</a>
-                    </div>
-                </li>
-            </ul>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Administrator
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="Administrator" asp-action="ManageAnimals">Manage Animals</a>
+                            <a class="dropdown-item" asp-controller="Administrator" asp-action="AddNewAnimal">Add Animal</a>
+                        </div>
+                    </li>
+                    @if (signInManager.IsSignedIn(User) && User.IsInRole("admin"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Manage
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" asp-controller="Account" asp-action="RolesManager">Manage roles</a>
+                                <a class="dropdown-item" asp-controller="Account" asp-action="UsersManager">Manage users</a>
+                            </div>
+                        </li>
+                    }
+                </ul>
+                <ul class="navbar-nav m-lg-auto">
+                    @if (signInManager.IsSignedIn(User))
+                    {
+                        <li class="nav-item">
+                            <form method="post" asp-action="logout" asp-controller="Account">
+                                <button type="submit" class="nav-link btn btn-link py-0" style="width:auto">
+                                    Logout @User.Identity!.Name
+                                </button>
+                            </form>
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Register" asp-controller="Account">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="Login" asp-controller="Account">Login</a>
+                        </li>
+                    }
+                </ul>
+            </div>
         </div>
     </nav>
 

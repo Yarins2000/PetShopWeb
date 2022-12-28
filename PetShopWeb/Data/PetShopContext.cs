@@ -1,10 +1,14 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using PetShopWeb.Models;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.AspNetCore.Identity;
 
 namespace PetShopWeb.Data
 {
-    public class PetShopContext : DbContext
+    public class PetShopContext : IdentityDbContext
     {
+
         public PetShopContext(DbContextOptions options) : base(options)
         {
         }
@@ -14,8 +18,11 @@ namespace PetShopWeb.Data
         public DbSet<Comment>? Comments { get; set; }
 
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { Id = 1, Name = "Mammal" },
                 new Category { Id = 2, Name = "Birds" },

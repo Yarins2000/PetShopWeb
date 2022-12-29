@@ -21,14 +21,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
 }).AddEntityFrameworkStores<PetShopContext>();
 
-//builder.Services.AddMvc(options =>
-//{
-//    var policy = new AuthorizationPolicyBuilder()
-//                    .RequireAuthenticatedUser()
-//                    .Build();
-//    options.Filters.Add(new AuthorizeFilter(policy));
-//});
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -36,6 +28,24 @@ using (var scope = app.Services.CreateScope())
     var ctx = scope.ServiceProvider.GetRequiredService<PetShopContext>();
     ctx.Database.EnsureDeleted();
     ctx.Database.EnsureCreated();
+
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+
+    var adminRole = new IdentityRole("admin");
+    if(!ctx.Roles.Any())
+        roleManager.CreateAsync(adminRole).GetAwaiter().GetResult();
+
+    if(!ctx.Users.Any(u => u.UserName == "Admin"))
+    {
+        var adminUser = new IdentityUser()
+        {
+            UserName = "admin@admin.com",
+            Email = "admin@admin.com"
+        };
+        var result = userManager.CreateAsync(adminUser, "Admin123").GetAwaiter().GetResult();
+        userManager.AddToRoleAsync(adminUser, adminRole.Name).GetAwaiter().GetResult();
+    }
 }
 
 if (!app.Environment.IsDevelopment())

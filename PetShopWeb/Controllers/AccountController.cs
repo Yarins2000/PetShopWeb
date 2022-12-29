@@ -47,8 +47,6 @@ namespace PetShopWeb.Controllers
                 var result = await _signInManager.PasswordSignInAsync(loginmodel.Email, loginmodel.Password, loginmodel.RememberMe, false);
                 if (result.Succeeded)
                 {
-                    //if(!string.IsNullOrEmpty(returnUrl) && Url.IsLocalUrl(returnUrl))
-                    //    return Redirect(returnUrl); 
                     if (!string.IsNullOrEmpty(returnUrl))
                         return LocalRedirect(returnUrl);
                     else
@@ -93,9 +91,7 @@ namespace PetShopWeb.Controllers
                 }
 
                 foreach (var error in result.Errors)
-                {
                     ModelState.AddModelError("", error.Description);
-                }
             }
             return View(registermodel);
         }
@@ -158,9 +154,7 @@ namespace PetShopWeb.Controllers
                 if (result.Succeeded)
                     return RedirectToAction("UsersManager");
                 foreach (var error in result.Errors)
-                {
                     ModelState.AddModelError("", error.Description);
-                }
 
                 return View(model);
             }
@@ -180,9 +174,7 @@ namespace PetShopWeb.Controllers
             if (result.Succeeded)
                 return RedirectToAction("UsersManager");
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError("", error.Description);
-            }
 
             return View("UsersManager");
         }
@@ -204,15 +196,12 @@ namespace PetShopWeb.Controllers
                 var identityResult = await _roleManager.CreateAsync(identityRole);
 
                 if (identityResult.Succeeded)
-                {
                     return RedirectToAction("RolesManager");
-                }
 
                 foreach (var error in identityResult.Errors)
-                {
                     ModelState.AddModelError("", error.Description);
-                }
             }
+
             return View(rolemodel);
         }
 
@@ -226,9 +215,7 @@ namespace PetShopWeb.Controllers
         {
             var role = await _roleManager.FindByIdAsync(id);
             if (role is null)
-            {
                 return View(nameof(RolesManager));
-            }
 
             var editModel = new EditRoleViewModel
             {
@@ -236,10 +223,9 @@ namespace PetShopWeb.Controllers
                 RoleName = role.Name
             };
             foreach (var user in _userManager.Users.ToList())
-            {
                 if (await _userManager.IsInRoleAsync(user, role.Name))
                     editModel.Users!.Add(user.UserName);
-            }
+
             return View(editModel);
         }
 
@@ -248,23 +234,18 @@ namespace PetShopWeb.Controllers
         {
             var role = await _roleManager.FindByIdAsync(editModel.Id);
             if (role is null)
-            {
                 return View(nameof(RolesManager));
-            }
             else
             {
                 role.Name = editModel.RoleName;
                 var result = await _roleManager.UpdateAsync(role);
 
                 if (result.Succeeded)
-                {
                     return RedirectToAction("RolesManager");
-                }
 
                 foreach (var error in result.Errors)
-                {
                     ModelState.AddModelError("", error.Description);
-                }
+
                 return View(editModel);
             }
         }
@@ -283,9 +264,7 @@ namespace PetShopWeb.Controllers
             if (result.Succeeded)
                 return RedirectToAction("RolesManager");
             foreach (var error in result.Errors)
-            {
                 ModelState.AddModelError("", error.Description);
-            }
 
             return View("RolesManager");
         }
@@ -347,6 +326,7 @@ namespace PetShopWeb.Controllers
                         return RedirectToAction("EditRole", new { Id = roleId });
                 }
             }
+
             return RedirectToAction("EditRole", new { Id = roleId });
         }
 
@@ -372,6 +352,7 @@ namespace PetShopWeb.Controllers
                 userRolesModel.IsSelected = await _userManager.IsInRoleAsync(user, role.Name);
                 model.Add(userRolesModel);
             }
+
             return View(model);
         }
 
@@ -397,7 +378,7 @@ namespace PetShopWeb.Controllers
 
             result = await _userManager.AddToRolesAsync(user, model.Where(x => x.IsSelected).Select(u => u.RoleName));
 
-            if(!result.Succeeded)
+            if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Cannot add selected roles to user");
                 return View(model);

@@ -7,14 +7,8 @@ services:
   app:
     depends_on:
       - db
-<<<<<<< HEAD
     image: yarins2000/petshopapp:1.0
     ports: 
         - "3000:80" 
         - "3001:433"
-=======
-    image: yarins2000/petshopcode
-    ports:
-      - "3000:80"
->>>>>>> 896232129d87e16fa9c1654ed3c3d3c0ab83ba1b
     restart: always

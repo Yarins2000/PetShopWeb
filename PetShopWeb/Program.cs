@@ -21,14 +21,6 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
     options.Password.RequireNonAlphanumeric = false;
 }).AddEntityFrameworkStores<PetShopContext>();
 
-//builder.Services.AddMvc(options =>
-//{
-//    var policy = new AuthorizationPolicyBuilder()
-//                    .RequireAuthenticatedUser()
-//                    .Build();
-//    options.Filters.Add(new AuthorizeFilter(policy));
-//});
-
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())

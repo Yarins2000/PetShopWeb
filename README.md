@@ -18,3 +18,4 @@ running the containers of these images:
 ```javascript
   $ docker-compose up -d
 ```
+then, open a browser and write in the URL: localhost:3000
